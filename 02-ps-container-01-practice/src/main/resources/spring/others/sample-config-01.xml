@@ -7,13 +7,7 @@
     <import resource="mul-type-bean-cfg.xml"/>
 
     <!-- Needed in order to support String To Date conversion automatically -->
-    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
-        <property name="propertyEditorRegistrars">
-            <list>
-                <bean class="com.ps.beans.others.DateConverter"/>
-            </list>
-        </property>
-    </bean>
+    <import resource="editor-cfg.xml"/>
 
     <bean id="simpleBean" class="com.ps.beans.SimpleBeanImpl"/>
 
