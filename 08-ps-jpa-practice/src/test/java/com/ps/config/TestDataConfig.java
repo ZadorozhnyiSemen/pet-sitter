@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -92,7 +93,7 @@ public class TestDataConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return null; //TODO 41. Create an appropriate transaction manager bean
+        return new JpaTransactionManager(entityManagerFactory());
     }
 
     @Bean
