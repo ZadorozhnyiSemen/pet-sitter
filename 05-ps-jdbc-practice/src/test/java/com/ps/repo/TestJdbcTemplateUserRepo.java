@@ -50,8 +50,8 @@ public class TestJdbcTemplateUserRepo {
 
     @Test
     public void testCount(){
-        final int i = userRepo.countUsers();
-        assertEquals(4, i);
+        final int result = userRepo.countUsers();
+        assertEquals(4, result);
     }
 
     @Test
