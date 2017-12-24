@@ -53,8 +53,7 @@ public class UserRepoMonitor {
         logger.info(" ---> Method " + className + "." + methodName + " is about to be called");
     }
 
-    /*TODO 24. Declare this method as an Around advice and create a pointcut expression that matches any method
-     with the name starting with "find" that is defined in a class with the name containing "Repo" */
+    @Around(value = "execution(* com.ps.repos.*.*Repo.find*(..))")
     public Object monitorFind(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Intercepting call of: " + methodName);
