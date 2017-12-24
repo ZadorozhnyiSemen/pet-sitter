@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -73,9 +74,9 @@ public class RestUserControllerTest {
         user.setActive(true);
         user.setPassword("what");
         user.setUserType(UserType.ADMIN);
-       //TODO 59. Use the proper RestTemplate method to save the user resource created previously
-        // no idea
-        //restTemplate.postForObject(GET_PUT_DEL_URL, user)
+
+        HttpEntity<User> httpEntity = new HttpEntity<>(user);
+        restTemplate.postForObject(GET_POST_URL, httpEntity, User.class);
 
         // test insertion
         User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "doctorwho");
@@ -96,9 +97,9 @@ public class RestUserControllerTest {
         user.setFirstName("Jones");
         user.setPassword("what");
         user.setUserType(UserType.ADMIN);
+        HttpEntity<User> httpEntity = new HttpEntity<>(user);
 
-        User editedUser = null;
-       //TODO 60. Use the proper RestTemplate method to update the user resource with username= "jessicajones"
+        User editedUser = restTemplate.postForObject(GET_PUT_DEL_URL, httpEntity, User.class, user.getUsername());
         // and retrieve the result in the userEdit object
         assertNotNull(editedUser);
         assertEquals("MissJones@pet.com", editedUser.getEmail());
