@@ -67,6 +67,9 @@ public class SimplePetServiceTest {
     @Test
     public void findByOwnerPositive() {
         //TODO 15. Analyse the stub implementation and add a test for simplePetService.findAllByOwner(owner)
+        Set<Pet> allByOwner = simplePetService.findAllByOwner(owner);
+        assertEquals(2, allByOwner.size());
+
     }
 
     //negative test, we know that pets for this owner do not exist
