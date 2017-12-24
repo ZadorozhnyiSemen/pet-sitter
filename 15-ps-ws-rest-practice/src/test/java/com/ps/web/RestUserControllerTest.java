@@ -74,6 +74,8 @@ public class RestUserControllerTest {
         user.setPassword("what");
         user.setUserType(UserType.ADMIN);
        //TODO 59. Use the proper RestTemplate method to save the user resource created previously
+        // no idea
+        //restTemplate.postForObject(GET_PUT_DEL_URL, user)
 
         // test insertion
         User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "doctorwho");
