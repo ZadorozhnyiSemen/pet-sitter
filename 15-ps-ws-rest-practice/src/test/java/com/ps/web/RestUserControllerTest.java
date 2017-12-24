@@ -107,7 +107,7 @@ public class RestUserControllerTest {
     // Test DELETE
     @Test(expected = HttpClientErrorException.class)
     public void deleteUser() {
-        //TODO 61. Use the proper RestTemplate method to delete the user resource with username= "doctorwho"
+        restTemplate.delete(GET_PUT_DEL_URL, "doctorwho");
         // test insertion
         User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "doctorwho");
         assertNull(newUser);
