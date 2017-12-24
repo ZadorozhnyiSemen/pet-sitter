@@ -59,7 +59,7 @@ public class UserRepoMonitor {
         logger.info(" ---> Intercepting call of: " + methodName);
         long t1 = System.currentTimeMillis();
         try {
-            return null; //TODO 25. Call the target method
+            return joinPoint.proceed();
         } finally {
             long t2 = System.currentTimeMillis();
             logger.info(" ---> Execution of " + methodName + " took: " + (t2 - t1) / 1000 + " ms.");
