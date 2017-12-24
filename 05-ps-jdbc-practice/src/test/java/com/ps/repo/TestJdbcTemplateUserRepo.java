@@ -50,9 +50,8 @@ public class TestJdbcTemplateUserRepo {
 
     @Test
     public void testCount(){
-        int result = 0;
-        // TODO 28: Use the JdbcTemplate instance to query for the number of rows in the P_USER table
-        assertEquals(4, result);
+        final int i = userRepo.countUsers();
+        assertEquals(4, i);
     }
 
     @Test
