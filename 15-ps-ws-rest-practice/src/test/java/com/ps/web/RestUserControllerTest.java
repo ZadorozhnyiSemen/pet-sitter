@@ -6,11 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import java.net.URI;
 
 import static org.junit.Assert.*;
 
@@ -51,8 +48,7 @@ public class RestUserControllerTest {
     //Test GET by username
     @Test
     public void findByUsername() {
-        User user = null;
-        //TODO 58. Use the proper RestTemplate method to retrieve a user resource with username="johncusack"
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "johncusack");
 
         assertNotNull(user);
         assertEquals("John.Cusack@pet.com", user.getEmail());
