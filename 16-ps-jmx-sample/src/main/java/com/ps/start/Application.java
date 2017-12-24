@@ -5,19 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableMBeanExport;
-import org.springframework.jmx.export.MBeanExporter;
-import org.springframework.jmx.support.ConnectorServerFactoryBean;
-import org.springframework.jmx.support.MBeanServerFactoryBean;
-import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
 
-import javax.annotation.ManagedBean;
-import javax.management.MalformedObjectNameException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by iuliana.cosmina on 10/18/16.
@@ -27,7 +17,7 @@ import java.util.Map;
 public class Application {
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
-    //TODO IULIANA: fix this so programatic clients works properly too sometime...
+    // IULIANA: fix this so programatic clients works properly too sometime...
     /*@Bean
     @DependsOn("rmiRegistry")
     ConnectorServerFactoryBean connector() {
