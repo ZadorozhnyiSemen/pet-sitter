@@ -4,6 +4,7 @@ import com.ps.base.UserType;
 import com.ps.ents.Pet;
 import com.ps.ents.User;
 import com.ps.services.PetService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by iuliana.cosmina on 4/17/16.
  */
-//TODO 18. Complete the test class definition in order for all the test to pass.
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml", "classpath:spring/pet-cfg.xml"})
 public class SpringPetServiceTest {
 
     public static final Long PET_ID = 1L;
@@ -27,6 +29,11 @@ public class SpringPetServiceTest {
 
     @Autowired
     PetService simplePetService;
+
+    @Before
+    public void setUp() throws Exception {
+
+    }
 
     //positive test, we know that a Pet with ID=1 exists
     @Test
