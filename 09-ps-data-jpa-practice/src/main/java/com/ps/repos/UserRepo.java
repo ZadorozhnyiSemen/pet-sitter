@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    @Query("select u from User u where u.username = ?1")
+    @Query("select u from User u where u.username like %?1%")
     List<User> findAllByUserName(String username);
 
     @Query("select u from User u where u.username = :un")
