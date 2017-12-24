@@ -43,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                //TODO 52. All URL matching /users/show/** and /users/delete/**  must be available only to users with role ADMIN
                 .antMatchers("/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/users/show/**", "/users/delete/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
