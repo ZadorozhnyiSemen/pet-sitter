@@ -57,15 +57,18 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         params.put("un", username);
         params.put("pass", password);
         params.put("email", email);
-        String query = "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(:id,:un,:pass, :email)";
+        String query = "INSERT INTO p_user(ID, USERNAME, PASSWORD, EMAIL) VALUES(:id,:un,:pass, :email)";
         // add NamedParameterJdbcTemplate instance call to create an user
-        return 0;
+        return jdbcNamedTemplate.getJdbcOperations().update(query, params);
     }
 
     @Override
     public int deleteById(Long userId) {
         // add NamedParameterJdbcTemplate instance call to delete an user
-        return 0;
+        return jdbcNamedTemplate.update("DELETE FROM p_user WHERE id=:id",
+                new HashMap<String, Object>() {{
+                    put("id", userId);
+                }});
     }
 
     @Override
@@ -79,7 +82,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         // add NamedParameterJdbcTemplate instance call to find an user
-        return null;
+        return jdbcNamedTemplate.queryForObject(sql, params, rowMapper);
     }
 
     @Override
@@ -97,7 +100,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     @Override
     public int updatePassword(Long userId, String newPass) {
-        String sql = "update p_user set password= :pass where ID = :id";
+        String sql = "UPDATE p_user SET password= :pass WHERE ID = :id";
         Map<String, Object> params = new HashMap<>();
         params.put("pass", newPass);
         params.put("id", userId);
@@ -106,7 +109,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     @Override
     public int updateUsername(Long userId, String username) {
-        String sql = "update p_user set username=:un where ID = :id";
+        String sql = "UPDATE p_user SET username=:un WHERE ID = :id";
         Map<String, Object> params = new HashMap<>();
         params.put("un", username);
         params.put("id", userId);
@@ -115,7 +118,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     @Override
     public String findUsernameById(Long id) {
-        String sql = "select email from p_user where ID = :id";
+        String sql = "SELECT email FROM p_user WHERE ID = :id";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         return jdbcNamedTemplate.queryForObject(sql, params, String.class);
@@ -123,7 +126,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     @Override
     public Map<String, Object> findByIdAsMap(Long id) {
-        String sql = "select * from p_user where ID = :id";
+        String sql = "SELECT * FROM p_user WHERE ID = :id";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         return jdbcNamedTemplate.queryForMap(sql, params);
@@ -131,7 +134,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     @Override
     public int countUsers() {
-        String sql = "select count(*) from p_user";
+        String sql = "SELECT count(*) FROM p_user";
         return jdbcNamedTemplate.queryForObject(sql, new HashMap<>(), Integer.class);
     }
 
