@@ -44,9 +44,12 @@ public class PetController {
 
 	@RequestMapping("/type/{type}")
 	public List<Pet> byPetType(@PathVariable("type") String type) {
-		/*TODO 62. Complete the method body such as, when the \http://localhost:4000/pets/type/DOG
-		 request is send to the microservice, all dogs information in the system will be returned */
-		return null;
+		List<Pet> pets = petRepository.findAllByType(type);
+		if (pet.size() == 0) {
+		    throw new PetNotFoundException("There are no pets with type " + type)
+        } else {
+		    return  pets;
+        }
 	}
 
 	@RequestMapping("/owner/{id}")
